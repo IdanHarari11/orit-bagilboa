@@ -1,15 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FaBed, FaBath, FaUsers, FaSwimmingPool, FaUtensils, FaWifi, FaTemperatureHigh } from 'react-icons/fa';
 import Section from '../ui/Section';
 import Card from '../ui/Card';
+import { villaUnits } from '@/data/site-images';
 
 const VillaDetails = () => {
   const units = [
     {
       name: 'יחידה 1 - הסוויטה המפוארת',
-      image: '/image/WhatsApp Image 2025-04-09 at 09.25.33 (1).jpeg',
+      image: villaUnits.unit1.src,
+      alt: villaUnits.unit1.alt,
       desc: 'יחידה מרווחת המתאימה למשפחות עם נוף מדהים לגלבוע, בריכה פרטית וחצר מפנקת.',
       capacity: 12,
       bedrooms: 3,
@@ -25,7 +28,8 @@ const VillaDetails = () => {
     },
     {
       name: 'יחידה 2 - הסוויטה המשפחתית',
-      image: '/image/WhatsApp Image 2025-04-09 at 09.25.30 (2).jpeg',
+      image: villaUnits.unit2.src,
+      alt: villaUnits.unit2.alt,
       desc: 'יחידה אינטימית וייחודית, מושלמת לזוגות, עם מרפסת פרטית ונוף פתוח לטבע.',
       capacity: 12,
       bedrooms: 3,
@@ -58,12 +62,16 @@ const VillaDetails = () => {
           >
             <Card className="h-full flex flex-col">
               <div className="relative h-64 mb-4 overflow-hidden rounded-xl">
-                <img 
-                  src={unit.image} 
-                  alt={unit.name} 
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" 
+                <Image
+                  src={unit.image}
+                  alt={unit.alt}
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={70}
+                  className="object-cover transition-transform duration-500 hover:scale-110"
                 />
-                <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-bold text-[#4caf50] shadow-md">
+                <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-bold text-[#4caf50] shadow-md z-10">
                   <div className="flex items-center gap-2">
                     <FaUsers />
                     <span>עד {unit.capacity} אנשים</span>

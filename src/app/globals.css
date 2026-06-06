@@ -64,7 +64,7 @@ p, h1, h2, h3, h4, h5, h6, a, button, li, span, label, input, textarea, select {
   }
   
   .section-subtitle {
-    @apply text-xl md:text-2xl font-medium mb-12 text-center text-gray-600;
+    @apply text-xl md:text-2xl font-normal mb-12 text-center text-gray-600;
   }
   
   .button-primary {
@@ -78,8 +78,101 @@ p, h1, h2, h3, h4, h5, h6, a, button, li, span, label, input, textarea, select {
   .card {
     @apply bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300;
   }
-} 
+
+  .card-hover {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-in {
+  animation: heroFadeIn 0.6s ease both;
+}
+
+.hero-fade-in-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.hero-fade-in-delay-2 {
+  animation-delay: 0.4s;
+}
+
+.hero-fade-in-delay-3 {
+  animation-delay: 1s;
+}
+
+.scroll-indicator {
+  animation: scrollBounce 1.5s ease-in-out infinite;
+}
+
+.scroll-indicator-dot {
+  animation: scrollBounce 1.5s ease-in-out infinite;
+}
+
+.section-reveal {
+  animation: sectionReveal 0.5s ease both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 25%;
+}
+
+.gallery-grid-item {
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid-item:hover {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-in,
+  .scroll-indicator,
+  .scroll-indicator-dot,
+  .section-reveal {
+    animation: none;
+  }
+
+  .gallery-grid-item:hover {
+    transform: none;
+  }
+}
 
 .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
   bottom: 0rem !important;
+}
+
+/* Keep a single NagishLi widget if the script is injected more than once */
+nagishli#NagishLiTag ~ nagishli#NagishLiTag {
+  display: none !important;
 }

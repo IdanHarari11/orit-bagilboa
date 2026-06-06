@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "optimize:assets": "node scripts/optimize-assets.mjs"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
@@ -25,6 +26,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
     "postcss": "^8",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3"
   }
 }

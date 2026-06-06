@@ -1,14 +1,16 @@
+import dynamic from 'next/dynamic';
 import Hero from '@/components/sections/Hero';
-import Gallery from '@/components/sections/Gallery';
-import VillaDetails from '@/components/sections/VillaDetails';
-import Amenities from '@/components/sections/Amenities';
-import Location from '@/components/sections/Location';
-import Booking from '@/components/sections/Booking';
-import GuestFeedback from '@/components/sections/GuestFeedback';
+
+const Gallery = dynamic(() => import('@/components/sections/Gallery'));
+const VillaDetails = dynamic(() => import('@/components/sections/VillaDetails'));
+const Amenities = dynamic(() => import('@/components/sections/Amenities'));
+const Location = dynamic(() => import('@/components/sections/Location'));
+const Booking = dynamic(() => import('@/components/sections/Booking'));
+const GuestFeedback = dynamic(() => import('@/components/sections/GuestFeedback'), { ssr: false });
+
 export default function Home() {
   return (
     <main className="rtl">
-      {/* טקסט SEO מוסתר לזחלני חיפוש בלבד */}
       <div className="hidden">
         <h1>וילה אורית בגלבוע - אירוח יוקרתי עם בריכה פרטית ונוף מרהיב</h1>
         <p>
@@ -25,7 +27,7 @@ export default function Home() {
         <h3>אטרקציות ופעילויות באזור הגלבוע</h3>
         <h2>הזמינו את החופשה המושלמת בגלבוע</h2>
       </div>
-      
+
       <Hero />
       <Gallery />
       <VillaDetails />
@@ -37,9 +39,8 @@ export default function Home() {
   );
 }
 
-// מטה-תגיות עבור SEO
 export const metadata = {
   title: 'וילה אורית בגלבוע | נופש יוקרתי עם בריכה פרטית ונוף מרהיב',
   description: 'וילה אורית בגלבוע מציעה אירוח יוקרתי עם 2 יחידות פרטיות, בריכות, נוף פנורמי והמון פרטיות. הזמינו עכשיו חופשה מושלמת בצפון בסביבה טבעית קסומה!',
-  keywords: 'וילה אורית בגלבוע, וילה פרטית בצפון, נופש עם בריכה פרטית, וילה עם בריכה על הגג, חופשה משפחתית בגלבוע, צימר יוקרתי בגלבוע, נופש בטבע, וילה עם נוף, אירוח בוטיק בצפון, וילה לאירוח קבוצות'
-}; 
+  keywords: 'וילה אורית בגלבוע, וילה פרטית בצפון, נופש עם בריכה פרטית, וילה עם בריכה על הגג, חופשה משפחתית בגלבוע, צימר יוקרתי בגלבוע, נופש בטבע, וילה עם נוף, אירוח בוטיק בצפון, וילה לאירוח קבוצות',
+};
