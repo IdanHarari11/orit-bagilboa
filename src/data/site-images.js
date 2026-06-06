@@ -17,13 +17,17 @@ export const outdoorImages = {
     src: '/image/guest-unit.webp',
     alt: 'יחידת אירוח',
   },
+  pool: {
+    src: '/image/pool-private.webp',
+    alt: 'בריכת שחייה פרטית',
+  },
 };
 
 export const galleryCarousel = [
   outdoorImages.bbq,
   outdoorImages.garden,
   outdoorImages.pingPong,
-  { src: '/image/pool-private.webp', alt: 'בריכת שחייה פרטית' },
+  outdoorImages.pool,
   { src: '/image/villa-front.webp', alt: 'וילה אורית - חזית הבית' },
   { src: '/image/kitchen-equipped.webp', alt: 'מטבח מאובזר' },
   { src: '/image/dining-corner.webp', alt: 'פינת אוכל' },
@@ -42,11 +46,12 @@ export const galleryGrid = [
   { src: '/image/rest-area.webp', alt: 'אזור מנוחה' },
   { src: '/image/seating-area.webp', alt: 'פינת ישיבה' },
   { src: '/image/shared-area.webp', alt: 'אזור משותף' },
+  outdoorImages.pool,
 ];
 
 export const heroBackgrounds = [
   outdoorImages.garden.src,
-  '/image/pool-private.webp',
+  outdoorImages.pool.src,
   outdoorImages.pingPong.src,
   '/image/villa-front.webp',
   outdoorImages.bbq.src,
