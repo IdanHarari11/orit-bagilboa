@@ -51,7 +51,32 @@ const VillaDetails = () => {
       title="היחידות שלנו"
       subtitle="בחרו את היחידה המתאימה לצרכים שלכם"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-5xl mx-auto">
+        <p className="text-center text-xl md:text-2xl font-bold text-[#4caf50] mb-3">
+          ביחד זה ל-24 אנשים!
+        </p>
+
+        <div
+          className="hidden md:block w-full max-w-4xl mx-auto mb-5 px-4 text-slate-800"
+          aria-hidden="true"
+        >
+          <svg
+            className="w-full h-8"
+            viewBox="0 0 800 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M28 28V14C28 6 400 4 400 4C400 4 772 6 772 14V28"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 md:px-6">
         {units.map((unit, index) => (
           <motion.div
             key={unit.name}
@@ -107,6 +132,7 @@ const VillaDetails = () => {
             </Card>
           </motion.div>
         ))}
+        </div>
       </div>
     </Section>
   );
