@@ -103,7 +103,7 @@ const Amenities = () => {
           <motion.div key={index} variants={item}>
             <Card>
               <div className="flex flex-col items-center text-center">
-                <div className="text-4xl text-[#4caf50] mb-4">{amenity.icon}</div>
+                <div className="text-4xl text-[#4caf50] mb-4" aria-hidden="true">{amenity.icon}</div>
                 <h3 className="text-xl font-bold mb-2">{amenity.title}</h3>
                 <p className="text-gray-600">{amenity.description}</p>
               </div>
@@ -162,6 +162,7 @@ const Amenities = () => {
             playsInline
             className="w-full h-auto"
             poster={villaVideo.poster}
+            aria-label="סרטון תדמית של וילה אורית בגלבוע — בריכה, חצר ומתחם האירוח"
           >
             <source src={villaVideo.src} type="video/mp4" />
             הדפדפן שלך אינו תומך בתגית וידאו.
