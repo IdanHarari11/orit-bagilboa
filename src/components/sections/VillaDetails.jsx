@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FaBed, FaBath, FaUsers, FaSwimmingPool, FaUtensils, FaWifi, FaTemperatureHigh } from 'react-icons/fa';
+import { FaBed, FaBath, FaUsers, FaUserFriends, FaSwimmingPool, FaUtensils, FaWifi, FaTemperatureHigh } from 'react-icons/fa';
 import Section from '../ui/Section';
 import Card from '../ui/Card';
 import { villaUnits } from '@/data/site-images';
@@ -52,31 +52,16 @@ const VillaDetails = () => {
       subtitle="בחרו את היחידה המתאימה לצרכים שלכם"
     >
       <div className="max-w-5xl mx-auto">
-        <p className="text-center text-xl md:text-2xl font-bold text-[#4caf50] mb-3">
-          ביחד זה ל-24 אנשים!
-        </p>
-
-        <div
-          className="hidden md:block w-full max-w-4xl mx-auto mb-5 px-4 text-slate-800"
-          aria-hidden="true"
-        >
-          <svg
-            className="w-full h-8"
-            viewBox="0 0 800 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M28 28V14C28 6 400 4 400 4C400 4 772 6 772 14V28"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex items-center gap-3 rounded-2xl border-2 border-white/25 bg-gradient-to-l from-[#388e3c] via-[#4caf50] to-[#66bb6a] px-6 py-3.5 md:px-10 md:py-4 text-white font-bold text-lg md:text-xl shadow-[0_8px_24px_rgba(76,175,80,0.35)] ring-4 ring-[#4caf50]/20">
+            <span className="flex h-11 w-11 md:h-12 md:w-12 shrink-0 items-center justify-center rounded-xl bg-white/20">
+              <FaUserFriends className="text-xl md:text-2xl" aria-hidden="true" />
+            </span>
+            <span>יחד עד 24 אנשים</span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 md:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {units.map((unit, index) => (
           <motion.div
             key={unit.name}

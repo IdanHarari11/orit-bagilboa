@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { 
@@ -49,6 +50,41 @@ const item = {
 };
 
 const Amenities = () => {
+  const videoRef = useRef(null);
+  const videoSectionRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    const section = videoSectionRef.current;
+    if (!video || !section) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch {
+        video.muted = true;
+        await video.play().catch(() => {});
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          playVideo();
+          return;
+        }
+        video.pause();
+      },
+      { threshold: 0.45, rootMargin: '0px 0px -10% 0px' }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Section 
       id="amenities" 
@@ -118,10 +154,11 @@ const Amenities = () => {
         transition={{ duration: 0.6 }}
       >
         <h3 className="text-2xl font-bold mb-6 text-center">התרשמו מהוילה</h3>
-        <div className="rounded-xl overflow-hidden shadow-2xl">
+        <div ref={videoSectionRef} className="rounded-xl overflow-hidden shadow-2xl">
           <video
+            ref={videoRef}
             controls
-            preload="none"
+            preload="metadata"
             playsInline
             className="w-full h-auto"
             poster={villaVideo.poster}
