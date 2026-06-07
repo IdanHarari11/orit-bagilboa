@@ -3,6 +3,7 @@ import { Rubik } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import SkipLink from '@/components/ui/SkipLink';
 import Script from 'next/script';
 import GoogleTagManager, { GoogleTagManagerNoScript } from '@/components/analytics/GoogleTagManager';
 
@@ -65,6 +66,7 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#4a7c59" />
       </head>
       <body className={`${rubik.variable} font-rubik bg-white text-slate-800`}>
+        <SkipLink />
         <GoogleTagManagerNoScript gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
         <Navbar />
         {children}

@@ -8,6 +8,7 @@ const Button = ({
   variant = 'primary', 
   className = '',
   withAnimation = true,
+  type = 'button',
   ...props 
 }) => {
   const baseClass = variant === 'primary' 
@@ -16,6 +17,7 @@ const Button = ({
   
   const buttonContent = (
     <button
+      type={type}
       onClick={onClick}
       className={`${baseClass} ${className}`}
       {...props}

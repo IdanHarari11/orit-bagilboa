@@ -10,7 +10,7 @@ const GuestFeedback = dynamic(() => import('@/components/sections/GuestFeedback'
 
 export default function Home() {
   return (
-    <main className="rtl">
+    <main id="main-content" className="rtl" tabIndex={-1}>
       <div className="hidden">
         <h1>וילה אורית בגלבוע - אירוח יוקרתי עם בריכה פרטית ונוף מרהיב</h1>
         <p>
