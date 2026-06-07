@@ -83,8 +83,10 @@ const Booking = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
+              role="status"
+              aria-live="polite"
             >
-              <div className="text-6xl text-[#4caf50] mb-6">
+              <div className="text-6xl text-[#4caf50] mb-6" aria-hidden="true">
                 <FaCheck />
               </div>
               <h3 className="text-2xl font-bold mb-2">תודה על פנייתך!</h3>
@@ -103,18 +105,22 @@ const Booking = () => {
               <h3 className="text-xl font-bold mb-6">מלאו את הפרטים ונחזור אליכם בהקדם</h3>
               
               {submissionError && (
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-right">
+                <div
+                  role="alert"
+                  className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-right"
+                >
                   {submissionError}
                 </div>
               )}
               
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5" aria-busy={isSubmitting} noValidate>
                 <div>
                   <label htmlFor="name" className="block text-gray-700 mb-1">שם מלא</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
+                    autoComplete="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
@@ -129,6 +135,8 @@ const Booking = () => {
                     type="tel"
                     id="phone"
                     name="phone"
+                    autoComplete="tel"
+                    inputMode="tel"
                     value={formData.phone}
                     onChange={handleChange}
                     required
@@ -143,6 +151,7 @@ const Booking = () => {
                     type="email"
                     id="email"
                     name="email"
+                    autoComplete="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -167,7 +176,7 @@ const Booking = () => {
                           <option key={num} value={num}>{num}</option>
                         ))}
                       </select>
-                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" aria-hidden="true">
                         <FaUsers className="text-gray-500" />
                       </div>
                     </div>
@@ -186,7 +195,7 @@ const Booking = () => {
                         min={new Date().toISOString().split('T')[0]}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4caf50] focus:border-transparent"
                       />
-                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" aria-hidden="true">
                         <FaCalendarAlt className="text-gray-500" />
                       </div>
                     </div>
@@ -205,7 +214,7 @@ const Booking = () => {
                         min={formData.checkIn || new Date().toISOString().split('T')[0]}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4caf50] focus:border-transparent"
                       />
-                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" aria-hidden="true">
                         <FaCalendarAlt className="text-gray-500" />
                       </div>
                     </div>
@@ -260,7 +269,7 @@ const Booking = () => {
                 href="tel:+972543199489" 
                 className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="bg-[#4caf50] text-white p-2 rounded-full">
+                <div className="bg-[#4caf50] text-white p-2 rounded-full" aria-hidden="true">
                   <FaPhone />
                 </div>
                 <span>התקשרו אלינו: 054-3199489</span>
@@ -272,7 +281,7 @@ const Booking = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="bg-[#25D366] text-white p-2 rounded-full">
+                <div className="bg-[#25D366] text-white p-2 rounded-full" aria-hidden="true">
                   <FaWhatsapp />
                 </div>
                 <span>שלחו הודעה בוואטסאפ</span>
@@ -282,7 +291,7 @@ const Booking = () => {
                 href="mailto:tsvika11@gmail.com" 
                 className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="bg-[#4285F4] text-white p-2 rounded-full">
+                <div className="bg-[#4285F4] text-white p-2 rounded-full" aria-hidden="true">
                   <FaEnvelope />
                 </div>
                 <span>שלחו לנו אימייל</span>
