@@ -53,12 +53,15 @@ const VillaDetails = () => {
     >
       <div className="max-w-5xl mx-auto">
         <div className="flex justify-center mb-8">
-          <div className="inline-flex items-center gap-3 rounded-2xl border-2 border-white/25 bg-gradient-to-l from-[#388e3c] via-[#4caf50] to-[#66bb6a] px-6 py-3.5 md:px-10 md:py-4 text-white font-bold text-lg md:text-xl shadow-[0_8px_24px_rgba(76,175,80,0.35)] ring-4 ring-[#4caf50]/20">
-            <span className="flex h-11 w-11 md:h-12 md:w-12 shrink-0 items-center justify-center rounded-xl bg-white/20">
-              <FaUserFriends className="text-xl md:text-2xl" aria-hidden="true" />
+          <p
+            className="inline-flex items-center gap-3 rounded-2xl border-2 border-white/25 bg-gradient-to-l from-[#388e3c] via-[#4caf50] to-[#66bb6a] px-6 py-3.5 md:px-10 md:py-4 text-white font-bold text-lg md:text-xl shadow-[0_8px_24px_rgba(76,175,80,0.35)] ring-4 ring-[#4caf50]/20"
+            role="note"
+          >
+            <span className="flex h-11 w-11 md:h-12 md:w-12 shrink-0 items-center justify-center rounded-xl bg-white/20" aria-hidden="true">
+              <FaUserFriends className="text-xl md:text-2xl" />
             </span>
             <span>יחד עד 24 אנשים</span>
-          </div>
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

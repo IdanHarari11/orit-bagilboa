@@ -24,13 +24,13 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">צרו קשר</h3>
             <ul className="space-y-2">
               <li className="flex items-center space-x-2 space-x-reverse">
-                <FaPhone className="text-[#4caf50]" />
+                <FaPhone className="text-[#4caf50]" aria-hidden="true" />
                 <a href="tel:+972543199489" className="text-gray-300 hover:text-white">
                   054-3199489
                 </a>
               </li>
               <li className="flex items-center space-x-2 space-x-reverse">
-                <FaWhatsapp className="text-[#4caf50]" />
+                <FaWhatsapp className="text-[#4caf50]" aria-hidden="true" />
                 <a 
                   href="https://wa.me/972543199489" 
                   target="_blank" 
@@ -41,7 +41,7 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-center space-x-2 space-x-reverse">
-                <FaMapMarkerAlt className="text-[#4caf50]" />
+                <FaMapMarkerAlt className="text-[#4caf50]" aria-hidden="true" />
                 <span className="text-gray-300">
                   מושב אומן, ישראל
                 </span>
@@ -58,7 +58,7 @@ const Footer = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white text-2xl"
-                aria-label="Instagram"
+                aria-label="עקבו אחרינו באינסטגרם"
               >
                 <FaInstagram />
               </a>
@@ -67,7 +67,7 @@ const Footer = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white text-2xl"
-                aria-label="Facebook"
+                aria-label="עקבו אחרינו בפייסבוק"
               >
                 <FaFacebook />
               </a>

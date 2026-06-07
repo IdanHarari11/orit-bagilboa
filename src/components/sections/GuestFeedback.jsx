@@ -104,18 +104,22 @@ const GuestFeedback = () => {
   }, []);
 
   // קומפוננטת דירוג כוכבים
-  const StarRating = ({ rating }) => {
-    return (
-      <div className="flex gap-1 mb-2" dir="ltr">
-        {[...Array(5)].map((_, i) => (
-          <FaStar 
-            key={i}
-            className={i < rating ? "text-yellow-400" : "text-gray-300"}
-          />
-        ))}
-      </div>
-    );
-  };
+  const StarRating = ({ rating }) => (
+    <div
+      className="flex gap-1 mb-2"
+      dir="ltr"
+      role="img"
+      aria-label={`דירוג ${rating} מתוך 5 כוכבים`}
+    >
+      {[...Array(5)].map((_, i) => (
+        <FaStar
+          key={i}
+          aria-hidden="true"
+          className={i < rating ? 'text-yellow-400' : 'text-gray-300'}
+        />
+      ))}
+    </div>
+  );
 
   // אנימציה לכרטיסי הביקורות
   const cardVariants = {
@@ -140,8 +144,8 @@ const GuestFeedback = () => {
       title="ביקורות אורחים"
       subtitle="מה אומרים עלינו האורחים שהתארחו בוילה אורית בגלבוע"
     >
-      <div className="relative w-full overflow-hidden py-8">
-        <swiper-container 
+      <div className="relative w-full overflow-hidden py-8" aria-label="קרוסלת ביקורות אורחים">
+        <swiper-container
           ref={swiperRef} 
           init="false"
           dir="rtl"
@@ -156,16 +160,19 @@ const GuestFeedback = () => {
                 whileInView="onscreen"
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <div className="text-[#4caf50] opacity-30 mb-3">
+                <div className="text-[#4caf50] opacity-30 mb-3" aria-hidden="true">
                   <FaQuoteRight size={24} />
                 </div>
                 
                 <StarRating rating={review.rating} />
                 
-                <p className="text-gray-700 mb-4 flex-grow">"{review.text}"</p>
+                <p className="text-gray-700 mb-4 flex-grow">
+                  <span className="sr-only">ציטוט: </span>
+                  &ldquo;{review.text}&rdquo;
+                </p>
                 
                 <div className="flex items-center mt-auto">
-                  <div className="flex-shrink-0 h-10 w-10 bg-[#4caf50]/20 rounded-full flex items-center justify-center text-[#4caf50] font-bold">
+                  <div className="flex-shrink-0 h-10 w-10 bg-[#4caf50]/20 rounded-full flex items-center justify-center text-[#4caf50] font-bold" aria-hidden="true">
                     {review.name.charAt(0)}
                   </div>
                   <div className="mr-3">
@@ -182,18 +189,20 @@ const GuestFeedback = () => {
       {/* כפתורי ניווט מותאמים */}
       <div className="flex justify-center gap-2 mt-6">
         <button
+          type="button"
           onClick={() => swiperRef.current.swiper.slidePrev()}
-          className="bg-white border border-gray-200 rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:bg-gray-50 transition-colors"
+          className="bg-white border border-gray-200 rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:bg-gray-50 transition-colors focus-visible:ring-2 focus-visible:ring-[#4caf50]"
           aria-label="ביקורת קודמת"
         >
-          <span className="text-lg">‹</span>
+          <span className="text-lg" aria-hidden="true">‹</span>
         </button>
         <button
+          type="button"
           onClick={() => swiperRef.current.swiper.slideNext()}
-          className="bg-white border border-gray-200 rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:bg-gray-50 transition-colors"
+          className="bg-white border border-gray-200 rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:bg-gray-50 transition-colors focus-visible:ring-2 focus-visible:ring-[#4caf50]"
           aria-label="ביקורת הבאה"
         >
-          <span className="text-lg">›</span>
+          <span className="text-lg" aria-hidden="true">›</span>
         </button>
       </div>
     </Section>

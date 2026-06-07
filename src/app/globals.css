@@ -20,7 +20,53 @@ html,
 body {
   direction: rtl;
   text-align: right;
-  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  top: -120%;
+  right: 1rem;
+  z-index: 10000;
+  padding: 0.75rem 1.25rem;
+  background: #4caf50;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid #4caf50;
+  outline-offset: 2px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* קוד תמיכה בנגישות */
@@ -68,11 +114,11 @@ p, h1, h2, h3, h4, h5, h6, a, button, li, span, label, input, textarea, select {
   }
   
   .button-primary {
-    @apply bg-[#4caf50] hover:bg-[#43a047] text-white font-bold py-3 px-6 rounded-2xl shadow-md transition-all duration-300 text-lg;
+    @apply bg-[#4caf50] hover:bg-[#43a047] text-white font-bold py-3 px-6 rounded-2xl shadow-md transition-all duration-300 text-lg focus-visible:ring-2 focus-visible:ring-[#4caf50] focus-visible:ring-offset-2;
   }
   
   .button-secondary {
-    @apply bg-white hover:bg-gray-100 text-[#4caf50] border border-[#4caf50] font-bold py-3 px-6 rounded-2xl shadow-md transition-all duration-300 text-lg;
+    @apply bg-white hover:bg-gray-100 text-[#4caf50] border border-[#4caf50] font-bold py-3 px-6 rounded-2xl shadow-md transition-all duration-300 text-lg focus-visible:ring-2 focus-visible:ring-[#4caf50] focus-visible:ring-offset-2;
   }
 
   .card {

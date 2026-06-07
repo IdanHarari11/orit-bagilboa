@@ -51,7 +51,12 @@ const Location = () => {
           <div className="bg-white p-2 rounded-2xl shadow-lg overflow-hidden h-[350px] lg:h-full">
             <div className="relative w-full h-full rounded-xl overflow-hidden">
               {!mapLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+                <div
+                  className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10"
+                  role="status"
+                  aria-live="polite"
+                  aria-label="טוען מפה"
+                >
                   <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#4caf50]"></div>
                 </div>
               )}
@@ -73,7 +78,7 @@ const Location = () => {
         {/* Info */}
         <div className="order-1 lg:order-2">
           <div className="flex items-center gap-2 text-xl mb-4">
-            <FaMapMarkerAlt className="text-[#4caf50] text-2xl" />
+            <FaMapMarkerAlt className="text-[#4caf50] text-2xl" aria-hidden="true" />
             <h3 className="font-bold">מושב אומן, ישראל</h3>
           </div>
           
@@ -104,7 +109,7 @@ const Location = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className="flex items-start gap-3 w-full">
-                  <div className="text-[#4caf50] text-2xl mt-1">{attraction.icon}</div>
+                  <div className="text-[#4caf50] text-2xl mt-1" aria-hidden="true">{attraction.icon}</div>
                   <div className="w-full flex flex-col justify-between">
                     <div>
                       <div className="flex items-center justify-between">
