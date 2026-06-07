@@ -82,7 +82,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="hero-fade-in hero-fade-in-delay-3 absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+      <div className="hero-fade-in hero-fade-in-delay-3 absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20" aria-hidden="true">
         <div className="scroll-indicator w-8 h-12 border-2 border-white rounded-full flex justify-center">
           <div className="scroll-indicator-dot w-1 h-3 bg-white rounded-full mt-2" />
         </div>

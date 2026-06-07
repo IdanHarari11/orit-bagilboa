@@ -40,7 +40,7 @@ const ScrollToTop = () => {
           className="fixed bottom-6 left-6 z-50 bg-[#4caf50] text-white p-3 rounded-full shadow-lg hover:bg-[#3d8b40] transition-colors"
           aria-label="גלול למעלה"
         >
-          <FaArrowUp />
+          <FaArrowUp aria-hidden="true" />
         </motion.button>
       )}
     </AnimatePresence>
