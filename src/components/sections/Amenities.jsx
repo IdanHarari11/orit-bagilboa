@@ -1,13 +1,16 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { 
   FaBed, FaBath, FaWifi, FaParking, FaTv, FaWater, 
   FaSnowflake, FaUtensils, FaCoffee, FaSwimmingPool, 
-  FaWalking, FaTree, FaMountain
+  FaWalking, FaTree, FaMountain, FaTableTennis, FaFire
 } from 'react-icons/fa';
 import Section from '../ui/Section';
 import Card from '../ui/Card';
+import { outdoorSpaces, villaVideo } from '@/data/site-images';
 
 const amenities = [
   { icon: <FaBed />, title: 'מיטות נוחות', description: 'מיטות איכותיות עם מזרנים אורתופדיים ומצעים רכים' },
@@ -22,6 +25,9 @@ const amenities = [
   { icon: <FaWater />, title: 'מים חמים 24/7', description: 'מים חמים זמינים תמיד במקלחות ובכיורים' },
   { icon: <FaWalking />, title: 'מסלולי טיול', description: 'גישה קלה למסלולי טיול נפלאים באזור' },
   { icon: <FaMountain />, title: 'נוף מרהיב', description: 'נוף פנורמי עוצר נשימה אל הרי הגלבוע' },
+  { icon: <FaTableTennis />, title: 'פינג פונג', description: 'שולחן פינג פונג תחת פרגולה מוצלת בחצר' },
+  { icon: <FaFire />, title: 'פינת מנגל', description: 'אזור מנגל מצויד לצד פינות ישיבה בחוץ' },
+  { icon: <FaTree />, title: 'מתחם חוץ', description: 'גינה מטופחת, פינות ישיבה ואירוח בחוץ' },
 ];
 
 const container = {
@@ -44,6 +50,41 @@ const item = {
 };
 
 const Amenities = () => {
+  const videoRef = useRef(null);
+  const videoSectionRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    const section = videoSectionRef.current;
+    if (!video || !section) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch {
+        video.muted = true;
+        await video.play().catch(() => {});
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          playVideo();
+          return;
+        }
+        video.pause();
+      },
+      { threshold: 0.45, rootMargin: '0px 0px -10% 0px' }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Section 
       id="amenities" 
@@ -71,6 +112,39 @@ const Amenities = () => {
         ))}
       </motion.div>
 
+      {/* Outdoor Spaces */}
+      <motion.div
+        className="mt-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <h3 className="text-2xl font-bold mb-2 text-center">מתחם החוץ</h3>
+        <p className="text-gray-600 text-center mb-8">מנגל, פינות ישיבה ופינג פונג בחוץ</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {outdoorSpaces.map((space) => (
+            <div key={space.src} className="rounded-xl overflow-hidden shadow-lg bg-white">
+              <div className="relative h-56 md:h-64">
+                <Image
+                  src={space.src}
+                  alt={space.title}
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  quality={70}
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h4 className="text-lg font-bold mb-1">{space.title}</h4>
+                <p className="text-gray-600 text-sm">{space.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
       {/* Video Section */}
       <motion.div 
         className="mt-16"
@@ -80,13 +154,16 @@ const Amenities = () => {
         transition={{ duration: 0.6 }}
       >
         <h3 className="text-2xl font-bold mb-6 text-center">התרשמו מהוילה</h3>
-        <div className="rounded-xl overflow-hidden shadow-2xl">
-          <video 
-            controls 
+        <div ref={videoSectionRef} className="rounded-xl overflow-hidden shadow-2xl">
+          <video
+            ref={videoRef}
+            controls
+            preload="metadata"
+            playsInline
             className="w-full h-auto"
-            poster="/image/WhatsApp Image 2025-04-09 at 09.27.41 (1).jpeg"
+            poster={villaVideo.poster}
           >
-            <source src="/image/WhatsApp Video 2025-04-09 at 09.27.42.mp4" type="video/mp4" />
+            <source src={villaVideo.src} type="video/mp4" />
             הדפדפן שלך אינו תומך בתגית וידאו.
           </video>
         </div>

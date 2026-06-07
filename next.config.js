@@ -17,7 +17,7 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 31536000,
   },
   output: 'standalone',
   env: {
@@ -65,6 +65,15 @@ const nextConfig = {
           {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
+          },
+        ],
+      },
+      {
+        source: '/image/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },

@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaDirections, FaMountain, FaWater, FaTree, FaStore } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaDirections, FaMountain, FaWater, FaTree, FaLandmark } from 'react-icons/fa';
 import Section from '../ui/Section';
 import Button from '../ui/Button';
 import Image from 'next/image';
+import { locationImages } from '@/data/site-images';
 
 const attractions = [
   { 
@@ -14,24 +15,24 @@ const attractions = [
     distance: '5 דקות נסיעה',
     description: 'מסלולי הליכה מרהיבים, פריחת האירוסים באביב, ונופים עוצרי נשימה.'
   },
+  {
+    icon: <FaLandmark />,
+    title: 'תל מגידו (גן לאומי)',
+    distance: '10 דקות נסיעה',
+    description: 'אתר מורשת עולמית בלב חבל תענך — שרידי עיר מקראית, ארמון מלכותי ותצפית על עמק יזרעאל.',
+  },
   { 
     icon: <FaWater />, 
     title: 'מעיין חרוד', 
     distance: '15 דקות נסיעה',
     description: 'פארק טבע יפהפה עם מעיין טבעי, מוזיאון, ומסלולי הליכה קלים לכל המשפחה.'
   },
-  { 
-    icon: <FaTree />, 
-    title: 'גן לאומי בית שאן', 
+  {
+    icon: <FaTree />,
+    title: 'עמק המעיינות',
     distance: '20 דקות נסיעה',
-    description: 'עתיקות מרשימות, תיאטרון רומי ושרידים ארכיאולוגיים מרתקים.'
-  },
-  { 
-    icon: <FaStore />, 
-    title: 'קניון בית שאן', 
-    distance: '20 דקות נסיעה',
-    description: 'מרכז קניות, מסעדות, וכל מה שתצטרכו במרחק נסיעה קצר.'
-  },
+    description: 'עמק ירוק ומושלם לטיולים, עם מעיינות טבעיים, בריכות מים, מסלולי הליכה ואופניים, וחוויות לכל המשפחה.',
+  }
 ];
 
 const Location = () => {
@@ -129,8 +130,8 @@ const Location = () => {
             >
               <div className="relative w-full h-full">
                 <Image 
-                  src="/image/WhatsApp Image 2025-04-13 at 06.43.27.jpeg" 
-                  alt="כניסה לוילה אורית בגלבוע" 
+                  src={locationImages.entrance.src} 
+                  alt={locationImages.entrance.alt} 
                   fill
                   loading="lazy"
                   sizes="(max-width: 640px) 50vw, 33vw"
@@ -148,8 +149,8 @@ const Location = () => {
             >
               <div className="relative w-full h-full">
                 <Image 
-                  src="/image/WhatsApp Image 2025-04-09 at 09.27.27.jpeg" 
-                  alt="נראות הוילה אורית בגלבוע" 
+                  src={locationImages.landscape.src} 
+                  alt={locationImages.landscape.alt} 
                   fill
                   loading="lazy"
                   sizes="(max-width: 640px) 50vw, 33vw"
