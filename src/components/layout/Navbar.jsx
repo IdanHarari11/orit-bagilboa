@@ -29,7 +29,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav 
+    <nav
+      aria-label="ניווט ראשי"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
       }`}
@@ -66,8 +67,12 @@ const Navbar = () => {
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
           <button
+            type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-[#4caf50] focus:outline-none"
+            className="text-[#4caf50] p-2 rounded-lg focus-visible:ring-2 focus-visible:ring-[#4caf50] focus-visible:ring-offset-2"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={isMobileMenuOpen ? 'סגור תפריט' : 'פתח תפריט'}
           >
             {isMobileMenuOpen ? (
               <FaTimes className="h-6 w-6" />
@@ -82,6 +87,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
