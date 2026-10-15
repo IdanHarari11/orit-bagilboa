@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "optimize:assets": "node scripts/optimize-assets.mjs"
+    "optimize:assets": "node scripts/optimize-assets.mjs",
+    "security:check-no-loader": "node scripts/check-no-loader.mjs"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
