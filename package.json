@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node init && next dev",
-    "build": "node init && next build",
-    "start": "node init && next start",
-    "lint": "next lint",
-    "optimize:assets": "node scripts/optimize-assets.mjs",
-    "security:check-no-loader": "node scripts/check-no-loader.mjs"
-  },
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint",
+  "optimize:assets": "node scripts/optimize-assets.mjs",
+  "security:check-no-loader": "node scripts/check-no-loader.mjs"
+},
   "dependencies": {
     "dayjs": "^1.11.13",
     "framer-motion": "^10.16.4",
